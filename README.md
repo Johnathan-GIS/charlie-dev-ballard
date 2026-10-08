@@ -75,6 +75,7 @@ This app currently contains four fish that live in four different bodies of wate
 ### each of these as lvl-3 headings...
 
 - links to wiki/wireframe & issue/game ideas
+- https://github.com/Johnathan-GIS/charlie-dev-ballard/wiki/charile%E2%80%90dev%E2%80%90ballard%E2%80%90wiki%E2%80%90game%E2%80%90ideas
 - a `tree` of your directory structure 
 - a list of tech & tools 
   - e.g., vsCode (live server, todo, prettier), HTML (emmet), CSS (normalize, bs5 & bs icons), js (jQ, jQui), GitHub (repo, readme/markdwon, wiki, issues, GitHub pages)...others? 
