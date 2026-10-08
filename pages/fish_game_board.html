@@ -1,0 +1,228 @@
+<title>Fish_play</title>
+<div>
+    <h1>Welcome to Fish Play!</h1>
+    <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example: Game Board</title>
+  <link rel="stylesheet" href="../assets/css/charile.css" />
+</head>
+<body>
+
+  <div class="container py-5">
+    <h1 class="mb-3">Game Board Example</h1>
+    <p class="text-muted">
+      The "game board" is just a `&lt;div&gt;` (or `&lt;section&gt;`) you style and
+      fill with whatever your game needs — cells, cards, an image, canvas, etc.
+      No mobile responsiveness is required for this assignment. Welcome to 
+       Fish play where to try match the fish with the correct body of water.
+    </p>
+
+    <div class="row">
+      <div class="col-8">
+        <!-- the actual game board: swap this grid for your game's content -->
+        <div id="gameBoard" class="border rounded p-3 bg-light">
+          <div class="row row-cols-4 g-2">
+            <div class="col"><div class="board-cell">1</div></div>
+            <div class="col"><div class="board-cell">2</div></div>
+            <div class="col"><div class="board-cell">3</div></div>
+            <div class="col"><div class="board-cell">4</div></div>
+            <div class="col"><div class="board-cell">5</div></div>
+            <div class="col"><div class="board-cell">6</div></div>
+            <div class="col"><div class="board-cell">7</div></div>
+            <div class="col"><div class="board-cell">8</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <!-- score + leaderboard live beside/below the board -->
+        <div class="card mb-3">
+          <div class="card-header"><i class="bi bi-star-fill me-1"></i>Score</div>
+          <div class="card-body"><p class="card-text fs-4 mb-0">0</p></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><i class="bi bi-trophy-fill me-1"></i>Leaderboard</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">Nova <span>42</span></li>
+            <li class="list-group-item d-flex justify-content-between">Rook <span>31</span></li>
+            <li class="list-group-item d-flex justify-content-between">Pixel <span>17</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .board-cell {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem;
+    }
+  </style>
+
+  <script src="charile.js"></script>
+</body>
+</html>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Teaching Examples Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/charile.css" />
+  </head>
+
+  <button id="resetBtn" class="btn btn-outline-secondary">reset game</button>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div id="jellyfish" class="float-start">🐙</div>
+      <div id="carp" class="float-start">🐟</div>
+      <div id="flounder" class="float-start">🐠</div>
+      <div id="cisco" class="float-start">🐡</div>
+
+      <div id="atlanticocean" class="float-end">EAST COAST</div>
+      <div id="gulfofamerica" class="float-end">South Coast</div>
+      <div id="mississippiriver" class="float-end">Mississippi River</div>
+      <div id="greatlakes"       class="float-end">Great Lakes</div>
+    </div>
+    </div>
+  </div>
+
+  <script src="..assets/js/charile.js"></script>
+  <script src="..assets/js/charile.js"></script>
+  <script src="../assets/js/charile.js"></script>
+  <script src="../assets/js/charile.js"></script>
+  <body></body>
+</html>
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example: Basic Top Nav</title>
+  <!-- BS5.3 pulled in via @import inside examples.css, per assignment note -->
+  <link rel="stylesheet" href="../assets/css/examples.css" />
+</head>
+<body>
+
+  <!--
+    BASIC (non-sticky) NAVBAR
+    - Scrolls away with the page, it's just a normal element in flow.
+    - .navbar + .navbar-expand-lg + .navbar-light/.bg-light are the core BS5 classes.
+    - .navbar-brand holds the icon + title.
+  -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-controller me-2"></i>Charlie Game
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBasic">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navBasic">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Concept</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Full Game</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container text-center py-5">
+      <h1>Basic Nav Example</h1>
+      <p class="lead">Scroll down. Notice the navbar above scrolls away with the page.</p>
+    </div>
+
+    <div class="filler-section"><h2>Section 1</h2></div>
+    <div class="filler-section"><h2>Section 2</h2></div>
+    <div class="filler-section"><h2>Section 3</h2></div>
+  </main>
+
+  <!-- BS5 bundle (includes Popper) needed for the navbar toggler on small screens -->
+  <script src="../assets/js/charile.js"></script>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example: Name Entry + sessionStorage</title>
+  <link rel="stylesheet" href="../assets/css/charile.css" />
+</head>
+<body>
+
+  <div class="container py-5" style="max-width: 480px;">
+    <h1 class="mb-3">Name Entry Example</h1>
+    <p class="text-muted">
+      Type a name and submit, or leave it blank for a random guest name.
+      The name is saved to <code>sessionStorage</code>, so it survives a page
+      refresh but clears when you close the tab.
+    </p>
+
+    <form id="nameForm" class="d-flex gap-2 mb-3">
+      <input id="nameInput" type="text" class="form-control" placeholder="Your name (optional)" />
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-box-arrow-in-right me-1"></i>Play
+      </button>
+    </form>
+
+    <button id="clearBtn" class="btn btn-outline-secondary btn-sm mb-4">
+      <i class="bi bi-arrow-counterclockwise me-1"></i>Clear sessionStorage
+    </button>
+
+    <p id="greeting" class="fs-4 fw-semibold"></p>
+  </div>
+
+  <script src="charile.js"></script>
+  <script src="../assets/js/charile.js"></script>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Example: Footer</title>
+  <link rel="stylesheet" href="../assets/css/charile.css" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <div class="container py-5 flex-grow-1">
+    <h1 class="mb-3">Footer Example</h1>
+    <p class="text-muted">
+      A simple footer pinned to the bottom via <code>min-vh-100</code> +
+      <code>flex-grow-1</code> on <code>&lt;body&gt;</code>, with links back to
+      the repo, your GitHub profile, and anything else you want to credit.
+    </p>
+  </div>
+
+  <!-- footer: swap these hrefs for your repo/profile links -->
+  <footer class="bg-dark text-light py-3 mt-auto">
+    <div class="container d-flex justify-content-between flex-wrap gap-2">
+      <span>&copy; 2026 Charlie Game</span>
+      <div>
+        <a class="link-light me-3" href=" " target="_blank">
+          <i class="bi bi-github me-1"></i>Repo
+        </a>
+        <a class="link-light" href="https://github.com/Johnathan-GIS" target="_blank">
+          <i class="bi bi-person-circle me-1"></i>Profile
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="charile.js"></script>
+</body>
+</html>
