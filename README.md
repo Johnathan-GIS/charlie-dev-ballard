@@ -15,43 +15,7 @@ spend a lil' time planning (wiki/wireframe, issues/screenshots 🥷🏼),
 minimum acceptance criteria
 The smallest set of measurable requirements that must be met for a user story, feature, or deliverable to be considered complete and acceptable to the stakeholder or product owner
 
-a title/top nav bar with an icon
-nav between "concept" and "full game" mode
-a "game board" section (<div>?), no mobile-responsiveness required.
-user can enter their name & receive a greeting (guest mode too if no name)
-guests get a random name
-a score + leaderboard sections: see your scores and top scores
-any other user info? date/time, IP, browser, ...?
-hardcode some in...use sessoinStorage...cheatMode() in console?
-a BS5 modal
-game play
-guest or username
-play: start, reset, (hint?)
-a clear ending: win, lose, score
-a footer
-links to this game's REPO, your GitHub profile, anything else you want
-tasks
-1️⃣ plan
-brainstorm 🧠🌪️ some game ideas
-create a new GitHub issue: title, some notes in the first comment.
-then a comment for FIVE screenshot, game ideas: good, bad, ugly...whatever.
-here's my example: barrycumbie/bravo-webgame#1
-link to this from your README
-create a wireframe: use a tool or draw & snap a pic
-save it in your GitHub repo, create new wiki page.
-if you don't see the wiki option, check your settings that it is toggled on ✅
-link to this from your README
-2️⃣ dev the concept
-create your new GitHub repo w/a README & enable GitHub Pages (save it in ⚙️)
-clone, pull, or downnload (.zip) to your local devbox & vsCode
-build the standard frontend web structure: assets/js, assets/css, pages/, index.html...
-give it a go!
-try hittin as many of the MACs as you can
-keep it simple: match one term instead of 6, move your gamepiece in one direction with no obstacles, etc.
-3️⃣ dev the full game
-using AI and/or more of you 🧠,
-level 🆙: more levels, toggle modes, better game play, cooler UI/Ux
-4️⃣ finish out the README
+
 # game title
 > short tagline
 Fish Play
@@ -86,8 +50,5 @@ This app currently contains four fish that live in four different bodies of wate
 - finally, create & link to sprint 99/future ideas
   - create a milestone: sprint 99
   - create at least 3 issues for future ideas & label them as sprint 99 milestone 
-5️⃣ update Profile & submit
-update your GitHub profile with links to both the REPO & APP
-submit a link to your profile app
-@Johnathan-GIS
-Comment
+
+
