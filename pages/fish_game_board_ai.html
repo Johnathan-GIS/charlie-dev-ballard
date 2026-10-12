@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fish Play — Habitat Match</title>
+<style>
+:root{--navy:#06284a;--deep:#031b35;--cyan:#46e4f3;--blue:#168be8;--panel:#082f55;--ink:#effbff;--muted:#b8e5fa;--gold:#ffd45e;--good:#5ff0b1;--bad:#ff7589}
+*{box-sizing:border-box}body{margin:0;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:radial-gradient(ellipse at 50% 0%,#1477a8 0,#073b69 42%,#031a33 100%);min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px clamp(14px,3vw,38px);background:#041d39eF;border-bottom:2px solid #37dff266;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:12px;font-size:clamp(1.35rem,3vw,2rem);font-weight:950;letter-spacing:.4px}.brand-icon{font-size:2.2rem;filter:drop-shadow(0 0 12px #25d9ff)}
+.stats{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.stat{background:#0a345a;border:1px solid #2875a0;border-radius:999px;padding:9px 14px;font-weight:800;white-space:nowrap}.stat b{color:var(--gold)}
+main{max-width:1400px;margin:auto;padding:22px clamp(12px,2.4vw,30px) 34px}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px}.hero h1{font-size:clamp(1.6rem,3vw,2.5rem);margin:0 0 5px}.hero p{margin:0;color:var(--muted)}.pill{background:linear-gradient(110deg,#0879d7,#05a8d8);border:1px solid #6beaff;border-radius:999px;padding:12px 18px;font-weight:900;box-shadow:0 8px 25px #008cdb40}
+.game-layout{display:grid;grid-template-columns:minmax(230px,290px) minmax(0,1fr);gap:18px;align-items:start}
+.panel{background:linear-gradient(155deg,#0b3a64ed,#041f3df2);border:1px solid #2580ac;border-radius:22px;box-shadow:0 16px 35px #00132766;padding:16px}.panel h2{margin:0 0 5px;font-size:1.2rem}.sub{font-size:.9rem;color:var(--muted);margin:0 0 14px}
+.fish-list{display:grid;gap:9px}.fish-card{display:flex;align-items:center;gap:10px;padding:9px 11px;background:#0a3153;border:1px solid #25658b;border-radius:15px;cursor:grab;user-select:none;transition:transform .15s,border .15s,background .15s;min-height:72px}.fish-card:hover{transform:translateY(-2px);border-color:var(--cyan);background:#10466d}.fish-card:active{cursor:grabbing}.fish-card.dragging{opacity:.4}.fish-card.selected{outline:3px solid var(--gold);border-color:var(--gold)}.fish-emoji{font-size:2.2rem;line-height:1;min-width:48px;text-align:center;filter:drop-shadow(0 3px 5px #001a2d)}.fish-name{font-weight:900}.fish-hint{font-size:.78rem;color:#9bdcf5;margin-top:3px}.fish-card.done{opacity:.45;filter:grayscale(.5);cursor:default}
+.board{min-width:0}.instruction{display:flex;justify-content:center;align-items:center;text-align:center;gap:10px;padding:13px;margin-bottom:14px;border-radius:17px;background:#0069a8a8;border:1px solid #53eaff;font-weight:900;font-size:1.05rem}
+.habitats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.habitat{--hab:#27c9e8;position:relative;overflow:hidden;min-height:210px;border-radius:22px;padding:15px 13px;border:2px solid #66dcf0;background:linear-gradient(150deg,#0a83b9,#07517e 60%,#053456);box-shadow:inset 0 0 30px #3ceaff20,0 10px 22px #00172b55;transition:transform .16s,border .16s,filter .16s}.habitat:before,.habitat:after{content:"";position:absolute;border:1px solid #8cf6ff33;border-radius:50%;width:90px;height:90px;right:-20px;bottom:-38px;pointer-events:none}.habitat:after{width:44px;height:44px;right:23px;bottom:-12px}.habitat[data-kind="river"]{background:linear-gradient(150deg,#43c9ef,#1377b7 65%,#075080)}.habitat[data-kind="pond"]{background:linear-gradient(150deg,#48d6ba,#168c91 65%,#075c70);border-color:#85f0d2}.habitat[data-kind="lake"]{background:linear-gradient(150deg,#6fc9f7,#286aa8 65%,#12466f);border-color:#a4e4ff}.habitat[data-kind="reef"]{background:linear-gradient(150deg,#6c71e8,#245bb5 65%,#123d79);border-color:#b7b4ff}.habitat[data-kind="freshwater"]{background:linear-gradient(150deg,#4eb5a5,#147f8e 65%,#075467);border-color:#9af1d8}.habitat.over{transform:scale(1.025);border-color:#fff36c;box-shadow:0 0 0 4px #fff36c55,0 12px 28px #00172b66}.habitat.correct{border-color:var(--good)}.habitat.wrong{animation:shake .28s;border-color:var(--bad)}@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.habitat-top{display:flex;align-items:center;gap:9px;position:relative;z-index:1}.habitat-icon{font-size:1.7rem}.habitat h3{margin:0;font-size:1.02rem}.habitat p{margin:3px 0 0;color:#d5f6ff;font-size:.78rem}.dropzone{margin-top:15px;min-height:92px;border:2px dashed #b9f5ff9c;border-radius:15px;display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap;padding:8px;position:relative;z-index:1;background:#00294c3b;transition:background .15s}.dropzone span{font-size:2.2rem;filter:drop-shadow(0 2px 4px #00243b)}.dropzone .placeholder{font-size:.82rem;color:#d5f5ff;text-align:center}.bottom-row{display:grid;grid-template-columns:1fr auto;gap:12px;margin-top:15px;align-items:stretch}.fact{background:#073456;border:1px solid #2677a0;border-radius:17px;padding:14px}.fact b{color:var(--gold)}.fact p{margin:5px 0 0;color:#d5f3ff;font-size:.92rem}.buttons{display:flex;flex-direction:column;gap:8px}.btn{border:0;border-radius:12px;padding:11px 15px;font:inherit;font-weight:900;cursor:pointer;color:#062542;background:linear-gradient(120deg,#67f1e0,#47c9ff);box-shadow:0 5px 12px #00192e44;transition:transform .12s}.btn:hover{transform:translateY(-1px)}.btn.secondary{background:#0c426b;color:var(--ink);border:1px solid #3184ac;box-shadow:none}.message{min-height:28px;margin:12px 2px 0;font-weight:850;color:#aaf8e0}.message.error{color:#ff9cac}.progress-wrap{height:8px;background:#05213a;border-radius:99px;overflow:hidden;margin-top:12px}.progress{height:100%;width:0;background:linear-gradient(90deg,#51f1bd,#47d9ff);transition:width .3s}
+footer{text-align:center;color:#8dcce8;padding:18px;font-size:.86rem}
+.modal{position:fixed;inset:0;background:#001327d9;display:none;place-items:center;z-index:10;padding:20px}.modal.show{display:grid}.modal-card{max-width:470px;width:100%;background:linear-gradient(150deg,#0e4774,#062341);border:1px solid #4adcf1;border-radius:24px;padding:28px;text-align:center;box-shadow:0 20px 70px #0008}.modal-card .big{font-size:4rem}.modal-card h2{font-size:2rem;margin:8px}.modal-card p{color:#c8f0ff;line-height:1.6}
+@media(max-width:1000px){.habitats{grid-template-columns:repeat(2,minmax(0,1fr))}.game-layout{grid-template-columns:250px minmax(0,1fr)}}
+@media(max-width:720px){header{align-items:flex-start;flex-direction:column}.stats{justify-content:flex-start}.hero{align-items:flex-start;flex-direction:column}.game-layout{grid-template-columns:1fr}.fish-list{grid-template-columns:repeat(2,minmax(0,1fr))}.fish-card{padding:8px;gap:6px}.fish-emoji{font-size:1.8rem;min-width:36px}.habitats{grid-template-columns:repeat(2,minmax(0,1fr))}.habitat{min-height:190px}.bottom-row{grid-template-columns:1fr}.buttons{flex-direction:row}.buttons .btn{flex:1}}
+@media(max-width:420px){.habitats,.fish-list{grid-template-columns:1fr}.habitat{min-height:170px}.dropzone{min-height:70px}.brand{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="brand-icon">🐠</span><span>Fish Play</span></div>
+  <div class="stats">
+    <div class="stat">⭐ Score: <b id="score">0</b></div>
+    <div class="stat">💗 Lives: <b id="lives">3</b></div>
+    <div class="stat">🏆 Level: <b id="level">1</b></div>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div><h1>Find every fish a home! 🌊</h1><p>Learn about aquatic habitats while you play.</p></div>
+    <div class="pill">🐬 Explore • Match • Discover</div>
+  </section>
+  <div class="game-layout">
+    <aside class="panel">
+      <h2>🐟 Fish Collection</h2><p class="sub">Drag a fish into its home—or tap a fish, then tap a habitat.</p>
+      <div class="fish-list" id="fishList"></div>
+    </aside>
+    <section class="board">
+      <div class="instruction">✨ Match each fish to the water where it belongs!</div>
+      <div class="habitats" id="habitats"></div>
+      <div class="bottom-row">
+        <div class="fact"><b>💡 Ocean Fact</b><p id="fact">Coral reefs provide food and shelter for thousands of marine species.</p></div>
+        <div class="buttons"><button class="btn" id="hintBtn">💡 Hint</button><button class="btn secondary" id="resetBtn">↻ Restart</button><button class="btn secondary" id="soundBtn" aria-pressed="false">🔇 Sound off</button></div>
+      </div>
+      <div class="progress-wrap" aria-label="Game progress"><div class="progress" id="progress"></div></div>
+      <p class="message" id="message" aria-live="polite">Ready to dive in? Choose a fish to get started!</p>
+    </section>
+  </div>
+</main>
+<footer>Made for curious ocean explorers 🌎 · Every habitat matters!</footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal-card"><div class="big" id="modalEmoji">🎉</div><h2 id="modalTitle">Amazing work!</h2><p id="modalText">You matched every fish.</p><button class="btn" id="playAgain">Play again 🐠</button></div>
+</div>
+<script>
+const fishData = [
+ {id:'clownfish',name:'Clownfish',emoji:'🐠',home:'reef',hint:'Colorful fish that live among coral and sea anemones.',fact:'Clownfish live in warm coral reefs and shelter among sea anemones.'},
+ {id:'salmon',name:'Salmon',emoji:'🐟',home:'river',hint:'Salmon swim in the ocean and return to freshwater rivers to spawn.',fact:'Many salmon are born in freshwater rivers, grow in the ocean, and return to their birthplace.'},
+ {id:'goldfish',name:'Goldfish',emoji:'🐡',home:'pond',hint:'A familiar freshwater fish often found in calm ponds.',fact:'Goldfish are freshwater fish. A pond needs clean water and enough space for them.'},
+ {id:'tuna',name:'Tuna',emoji:'🐬',home:'ocean',hint:'A powerful swimmer of the open ocean.',fact:'Tuna are fast, strong swimmers that travel through the open ocean.'},
+ {id:'trout',name:'Trout',emoji:'🐟',home:'lake',hint:'This fish often lives in cool, clear lakes and streams.',fact:'Many trout thrive in cool, oxygen-rich freshwater.'},
+ {id:'seahorse',name:'Seahorse',emoji:'🪸',home:'reef',hint:'A tiny marine animal often found near reefs and seagrass.',fact:'Seahorses swim upright, and the father carries developing babies in a pouch.'},
+ {id:'catfish',name:'Catfish',emoji:'🐠',home:'freshwater',hint:'Look for whisker-like barbels on this freshwater fish.',fact:'Catfish use sensitive whisker-like barbels to find food in murky water.'},
+ {id:'angelfish',name:'Angelfish',emoji:'🐟',home:'reef',hint:'Many bright angelfish live around tropical coral reefs.',fact:'Reef fish depend on healthy coral for shelter, food, and places to hide.'}
+];
+const habitatData = [
+ {id:'reef',name:'Coral Reef',icon:'🪸',desc:'Warm, colorful saltwater',emoji:'🐚'},
+ {id:'river',name:'River',icon:'🏞️',desc:'Freshwater that flows',emoji:'💧'},
+ {id:'ocean',name:'Open Ocean',icon:'🌊',desc:'Vast, salty blue water',emoji:'🐬'},
+ {id:'pond',name:'Pond',icon:'🪷',desc:'Small, calm freshwater',emoji:'🌿'},
+ {id:'lake',name:'Lake',icon:'🏔️',desc:'A large inland body of water',emoji:'💦'},
+ {id:'freshwater',name:'Freshwater',icon:'🌱',desc:'Streams and freshwater habitats',emoji:'🍃'}
+];
+const facts = [
+ 'Coral reefs provide food and shelter for thousands of marine species.',
+ 'Rivers carry fresh water across the land and provide homes for many fish.',
+ 'The open ocean is enormous—and many fish travel long distances through it.',
+ 'Ponds are small ecosystems where plants, insects, and fish can live together.',
+ 'Lakes can be home to trout, bass, and many other freshwater fish.',
+ 'Healthy water, plants, and shelter help fish thrive in their habitats.'
+];
+let score=0,lives=3,level=1,selected=null,matched=new Set(),soundOn=false,usedHints=new Set();
+const $=id=>document.getElementById(id);
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function renderFish(){
+ const list=$('fishList');list.innerHTML='';
+ shuffle(fishData).forEach(f=>{
+  const el=document.createElement('div');el.className='fish-card'+(matched.has(f.id)?' done':'')+(selected===f.id?' selected':'');
+  el.draggable=!matched.has(f.id);el.tabIndex=matched.has(f.id)?-1:0;el.setAttribute('role','button');el.setAttribute('aria-label',`${f.name}, drag or select to match`);
+  el.innerHTML=`<span class="fish-emoji">${f.emoji}</span><div><div class="fish-name">${f.name}</div><div class="fish-hint">${matched.has(f.id)?'✅ Home found!':'Tap or drag me'}</div></div>`;
+  el.addEventListener('dragstart',e=>{if(matched.has(f.id)){e.preventDefault();return}selected=f.id;e.dataTransfer.setData('text/plain',f.id);e.dataTransfer.effectAllowed='move';el.classList.add('dragging')});
+  el.addEventListener('dragend',()=>el.classList.remove('dragging'));
+  el.addEventListener('click',()=>{if(matched.has(f.id))return;selected=selected===f.id?null:f.id;renderFish();setMessage(selected?`You picked ${f.name}! Now tap its habitat.`:'Fish unselected. Pick one when you are ready.');playTone(520,.06)});
+  el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();el.click()}});
+  list.appendChild(el);
+ });
+}
+function renderHabitats(){
+ const root=$('habitats');root.innerHTML='';
+ habitatData.forEach(h=>{
+  const el=document.createElement('div');el.className='habitat';el.dataset.kind=h.id;el.dataset.id=h.id;
+  el.innerHTML=`<div class="habitat-top"><span class="habitat-icon">${h.icon}</span><div><h3>${h.name}</h3><p>${h.desc}</p></div></div><div class="dropzone" id="zone-${h.id}"><span class="placeholder">⬇ Drop fish here</span></div>`;
+  el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('over');e.dataTransfer.dropEffect='move'});
+  el.addEventListener('dragleave',e=>{if(!el.contains(e.relatedTarget))el.classList.remove('over')});
+  el.addEventListener('drop',e=>{e.preventDefault();el.classList.remove('over');const id=e.dataTransfer.getData('text/plain')||selected;if(id)tryMatch(id,h.id,el)});
+  el.addEventListener('click',()=>{if(selected)tryMatch(selected,h.id,el)});
+  root.appendChild(el);
+ });
+}
+function tryMatch(fishId,habitatId,el){
+ const f=fishData.find(x=>x.id===fishId);if(!f||matched.has(fishId))return;
+ if(f.home===habitatId){
+  matched.add(fishId);selected=null;score+=100;const h=habitatData.find(x=>x.id===habitatId);
+  const zone=$('zone-'+habitatId);const placeholder=zone.querySelector('.placeholder');if(placeholder)placeholder.remove();
+  const chip=document.createElement('span');chip.textContent=f.emoji;chip.title=f.name;chip.setAttribute('aria-label',f.name);zone.appendChild(chip);
+  el.classList.add('correct');setTimeout(()=>el.classList.remove('correct'),650);
+  $('fact').textContent=f.fact;setMessage(`🎉 Correct! ${f.name} belongs in the ${h.name.toLowerCase()}. +100 points!`);playTone(740,.12);setTimeout(()=>playTone(990,.14),100);
+  renderFish();updateStats();
+  if(matched.size===fishData.length)finishGame();
+ }else{
+  lives=Math.max(0,lives-1);score=Math.max(0,score-15);el.classList.add('wrong');setTimeout(()=>el.classList.remove('wrong'),350);
+  setMessage(`Not quite! Try another habitat for the ${f.name}. You lost 1 life.`,true);playTone(180,.2);updateStats();
+  if(lives===0)endGame();
+ }
+}
+function updateStats(){$('score').textContent=score;$('lives').textContent=lives;$('level').textContent=level;$('progress').style.width=(matched.size/fishData.length*100)+'%'}
+function setMessage(t,error=false){$('message').textContent=t;$('message').className='message'+(error?' error':'')}
+function hint(){
+ const options=fishData.filter(f=>!matched.has(f.id));if(!options.length)return;
+ let f=options.find(x=>!usedHints.has(x.id))||options[0];usedHints.add(f.id);selected=f.id;renderFish();
+ setMessage(`💡 Hint: ${f.name} — ${f.hint}`);
+ const habitat=document.querySelector(`.habitat[data-id="${f.home}"]`);habitat.animate([{filter:'brightness(1)'},{filter:'brightness(1.6)'},{filter:'brightness(1)'}],{duration:900});
+ $('fact').textContent=f.fact;playTone(600,.08);
+}
+function finishGame(){
+ level++;updateStats();$('modalEmoji').textContent='🏆';$('modalTitle').textContent='Ocean expert!';$('modalText').textContent=`You found every fish a home and earned ${score} points. You are a true habitat hero!`; $('modal').classList.add('show');setMessage('Perfect! Every fish has found a home. 🌎');
+}
+function endGame(){$('modalEmoji').textContent='🐠';$('modalTitle').textContent='Dive back in!';$('modalText').textContent=`You scored ${score} points. Restart to try matching all the fish with fewer mistakes.`;$('modal').classList.add('show')}
+function reset(){score=0;lives=3;selected=null;matched=new Set();usedHints=new Set();$('modal').classList.remove('show');renderFish();renderHabitats();updateStats();setMessage('Ready to dive in? Choose a fish to get started!');$('fact').textContent=facts[0]}
+let audioCtx=null;
+function playTone(freq,duration){if(!soundOn)return;try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.frequency.value=freq;o.type='sine';g.gain.setValueAtTime(.07,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+duration)}catch(e){}}
+$('hintBtn').addEventListener('click',hint);$('resetBtn').addEventListener('click',reset);$('playAgain').addEventListener('click',reset);
+$('soundBtn').addEventListener('click',()=>{soundOn=!soundOn;$('soundBtn').textContent=soundOn?'🔊 Sound on':'🔇 Sound off';$('soundBtn').setAttribute('aria-pressed',String(soundOn));if(soundOn)playTone(600,.1)});
+renderFish();renderHabitats();updateStats();
+</script>
+</body>
+</html>
