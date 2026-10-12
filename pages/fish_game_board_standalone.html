@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fish Play</title>
+    <link rel="stylesheet" href="../assets/css/charile.css" />
+    
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand fw-bold" href="#">
+          <i class="bi bi-water me-2"></i>Charlie Game
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#gameNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="gameNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="#">Fish Play</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Game Board</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+        <div>
+          <p class="text-uppercase text-primary fw-semibold mb-1">Aquatic Match</p>
+          <h1 class="mb-0">Welcome to Fish Play!</h1>
+        </div>
+        <button id="resetBtn" class="btn btn-outline-secondary">Reset game</button>
+      </div>
+
+      <p class="text-muted mb-4">
+        Match each fish to the correct body of water and build your score as you learn the aquatic habitats.
+      </p>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+              <h2 class="h4 mb-3">Game Board</h2>
+              <div id="gameBoard" class="game-grid">
+                <div class="board-cell">1</div>
+                <div class="board-cell">2</div>
+                <div class="board-cell">3</div>
+                <div class="board-cell">4</div>
+                <div class="board-cell">5</div>
+                <div class="board-cell">6</div>
+                <div class="board-cell">7</div>
+                <div class="board-cell">8</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card shadow-sm border-0 mb-3">
+            <div class="card-header bg-primary text-white">
+              <i class="bi bi-star-fill me-2"></i>Score
+            </div>
+            <div class="card-body">
+              <p id="score" class="card-text fs-4 mb-0">0</p>
+            </div>
+          </div>
+
+          <div class="card shadow-sm border-0">
+            <div class="card-header bg-info text-white">
+              <i class="bi bi-trophy-fill me-2"></i>Leaderboard
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between"><span>Nova</span><span>42</span></li>
+              <li class="list-group-item d-flex justify-content-between"><span>Rook</span><span>31</span></li>
+              <li class="list-group-item d-flex justify-content-between"><span>Pixel</span><span>17</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-2" id="fish-list">
+        <div class="col-sm-6 col-md-3">
+          <div class="fish-card" id="jellyfish" data-fish="jellyfish" tabindex="0" aria-label="Drag Jellyfish to its habitat">
+            <span class="emoji">🐙</span>
+            <strong>Jellyfish</strong>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="fish-card" id="carp" data-fish="carp" tabindex="0" aria-label="Drag Carp to its habitat">
+            <span class="emoji">🐟</span>
+            <strong>Carp</strong>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="fish-card" id="flounder" data-fish="flounder" tabindex="0" aria-label="Drag Flounder to its habitat">
+            <span class="emoji">🐠</span>
+            <strong>Flounder</strong>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="fish-card" id="cisco" data-fish="cisco" tabindex="0" aria-label="Drag Cisco to its habitat">
+            <span class="emoji">🐡</span>
+            <strong>Cisco</strong>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="h4 mt-4 mb-3">Habitats</h2>
+      <div class="row g-3 mt-1" id="habitat-list">
+        <div class="col-sm-6 col-md-3">
+          <div class="habitat-card" id="eastcoast" data-habitat="eastcoast" tabindex="0">
+            <span class="emoji">🌊</span>
+            <strong>East Coast</strong>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="habitat-card" id="southcoast" data-habitat="southcoast" tabindex="0">
+            <span class="emoji">🌴</span>
+            <strong>South Coast</strong>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="habitat-card" id="mississippiriver" data-habitat="mississippiriver" tabindex="0">
+            <span class="emoji">🏞️</span>
+            <strong>Mississippi River</strong>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="habitat-card" id="greatlakes" data-habitat="greatlakes" tabindex="0">
+            <span class="emoji">🛶</span>
+            <strong>Great Lakes</strong>
+          </div>
+        </div>
+      </div>
+      <p id="gameMessage" class="mt-3" role="status" aria-live="polite">Drag each fish to its habitat.</p>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+$(function () {
+  const correctHabitats = {
+    jellyfish: "southcoast",
+    carp: "mississippiriver",
+    flounder: "eastcoast",
+    cisco: "greatlakes"
+  };
+
+  let score = 0;
+  const completedFish = new Set();
+  const originalParents = {};
+  const originalPositions = {};
+
+  $(".fish-card").each(function () {
+    originalParents[this.id] = this.parentElement;
+  });
+
+  function showMessage(message) {
+    $("#gameMessage").text(message);
+  }
+
+  $(".fish-card").draggable({
+    revert: "invalid",
+    containment: "document",
+    scroll: true,
+    helper: "original",
+    start: function () {
+      if (completedFish.has(this.id)) return false;
+      $(this).css("z-index", 1000);
+    },
+    stop: function () {
+      $(this).css("z-index", "");
+    }
+  });
+
+  $(".habitat-card").droppable({
+    accept: function (draggable) {
+      return !completedFish.has(draggable.attr("id"));
+    },
+    hoverClass: "drop-hover",
+    tolerance: "intersect",
+    drop: function (event, ui) {
+      const fishId = ui.draggable.attr("id");
+      const habitatId = this.id;
+
+      if (correctHabitats[fishId] === habitatId) {
+        if (!completedFish.has(fishId)) {
+          completedFish.add(fishId);
+          score += 10;
+          $("#score").text(score);
+          ui.draggable.draggable("disable");
+          ui.draggable.addClass("correct").css({
+            position: "relative",
+            left: "0",
+            top: "0",
+            width: "100%",
+            zIndex: ""
+          });
+          $(this).append(ui.draggable);
+          showMessage("Correct! " + ui.draggable.find("strong").text() + " belongs in " +
+            $(this).find("strong").text() + ".");
+          if (completedFish.size === Object.keys(correctHabitats).length) {
+            showMessage("Great job! You matched every fish. Final score: " + score + "!");
+          }
+        }
+      } else {
+        showMessage("Not quite! Try a different habitat.");
+        ui.draggable.addClass("incorrect");
+        setTimeout(function () { ui.draggable.removeClass("incorrect"); }, 250);
+      }
+    }
+  });
+
+  $("#resetBtn").on("click", function () {
+    $(".fish-card").each(function () {
+      const fish = $(this);
+      fish.draggable("enable");
+      fish.removeClass("correct incorrect").css({
+        position: "",
+        left: "",
+        top: "",
+        width: "",
+        zIndex: ""
+      });
+      $("#fish-list").find(".col-sm-6").has(fish).append(fish);
+    });
+    // Ensure all fish are back in their original columns.
+    Object.keys(originalParents).forEach(function (id) {
+      const fish = document.getElementById(id);
+      const parentColumn = originalParents[id];
+      if (fish && parentColumn) parentColumn.appendChild(fish);
+    });
+    completedFish.clear();
+    score = 0;
+    $("#score").text("0");
+    showMessage("Drag each fish to its habitat.");
+  });
+});
+
+</script>
+  </body>
+</html>

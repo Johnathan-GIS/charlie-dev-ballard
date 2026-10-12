@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("greeting").textContent = "";
   });
 });
+
+let fishcardPosition = $('#fishcard').position();
+let habitatCardPosition = $('#habitat-card').position();
 let jellyfishPosition = $('#jellyfish').position();
 let carpPosition = $ ('#carp').position();
 let flounderPosition = $('#flounder').position();
@@ -80,9 +83,19 @@ $('#cisco').draggable(
     }
 );
 
+$('#fishcard').draggable(
+{
+
+    stop: function() {
+        fishcardPosition = $('#fishcard').position();
+        console.log(fishcardPosition);           
+      }
+    }
+);
 
 
-$('#atlanticocean').droppable({
+
+$('#eastcoast').droppable({
   
     accept: '#flounder',
   
@@ -91,13 +104,24 @@ $('#atlanticocean').droppable({
   }
 });
 
-$('#gulfofamercia').droppable({
+$('#southcoast').droppable({
   
     accept: '#jellyfish',
   
     drop: function() {
     alert('you win!');
   }
+});
+
+$('#habitat-card').droppable({
+  
+    accept: '#fishcard',
+  
+    drop: function() {
+      if (fishcard.id === 'flounder' && habitat-card.id === 'eastcoast') {
+        alert('you win!');
+      }
+    }
 });
 
 $('#greatlakes').droppable({
@@ -121,34 +145,7 @@ function resetGame(){
     vanillaCar.style.left = "0px";
     vanillaCar.style.top = "0px";
 }
-const GUEST_NAMES = ["Johnathan", "Dominico", "Kaung", "May", "Kayla"];
-
-function randomGuestName() {
-  return GUEST_NAMES[Math.floor(Math.random() * GUEST_NAMES.length)];
-}
-
-function greet(name) {
-  document.getElementById("greeting").textContent = `Welcome, ${name}!`;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const savedName = sessionStorage.getItem("playerName");
-  if (savedName) {
-    greet(savedName);
-    document.getElementById("nameInput").value = savedName;
-  }
-
-  document.getElementById("nameForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const typed = document.getElementById("nameInput").value.trim();
-    const name = typed || randomGuestName();
-    sessionStorage.setItem("playerName", name);
-    greet(name);
-  });
-
-  document.getElementById("clearBtn").addEventListener("click", () => {
-    sessionStorage.removeItem("playerName");
-    document.getElementById("nameInput").value = "";
-    document.getElementById("greeting").textContent = "";
-  });
-});
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
