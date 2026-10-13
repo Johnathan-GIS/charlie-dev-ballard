@@ -4,8 +4,8 @@ Welcome to Johnathan Ballard's GitHub. There are some cool games on this page yo
 There are two different fish games, both fun and educational. 
 # Wire frame and game ideas 
 https://github.com/Johnathan-GIS/charlie-dev-ballard/wiki/charile%E2%80%90dev%E2%80%90ballard%E2%80%90wiki%E2%80%90game%E2%80%90ideas
-# game title
-> short tagline
+# FISH PLAY
+> Fun and Educational
 Fish Play
 ## authorship
 - name + link to your GitHub Profile, date, version
