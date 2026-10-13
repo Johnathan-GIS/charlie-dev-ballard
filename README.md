@@ -6,9 +6,7 @@ There are two different fish games, both fun and educational.
 https://github.com/Johnathan-GIS/charlie-dev-ballard/wiki/charile%E2%80%90dev%E2%80%90ballard%E2%80%90wiki%E2%80%90game%E2%80%90ideas
 # FISH PLAY
 > Fun and Educational
-Fish Play
 ## authorship
-- name + link to your GitHub Profile, date, version
 Johnathan Ballard https://github.com/Johnathan-GIS 10/08/2026, version 1.0 
 ## user story 
 - **as a** ... a developer, I want to make both a fun and educational game
