@@ -26,10 +26,9 @@ This app currently contains four fish that live in four different bodies of wate
 There is also a second game that is more advanced, including more different types of water and more fish.
 It is an interactive game where you drag this fish to their habitat.
 ### links to wiki/wireframe & issue/game ideas
-### https://github.com/Johnathan-GIS/charlie-dev-ballard/wiki/charile%E2%80%90dev%E2%80%90ballard%E2%80%90wiki%E2%80%90game%E2%80%90ideas
-- 
-- ### charile-dev-ballard/assets/css/charile.css charile-dev-ballard/assets/js/charile.js     charile-dev-ballard/pages/fish_game_board_ai.html   charile-dev-ballard/pages/fish_game_board_standalone.html 
--### a list of tech & tools
+### https://github.com/Johnathan-GIS/charlie-dev-ballard/wiki/charile%E2%80%90dev%E2%80%90ballard%E2%80%90wiki%E2%80%90game%E2%80%90ideas 
+ ### charile-dev-ballard/assets/css/charile.css charile-dev-ballard/assets/js/charile.js     charile-dev-ballard/pages/fish_game_board_ai.html   charile-dev-ballard/pages/fish_game_board_standalone.html 
+### a list of tech & tools
 -  ### 1 CSS, 1 JavaScript, 2 HTML page files and 1 hmtl index
     ### Visual Studio Code Live Server, HTML (emmet), CSS (normalize, bs5 & bs icons), js (jQ, jQui), GitHub (repo, readme, wiki, milestone, GitHub pages
   ### The AI game created a live portion of the game
@@ -41,10 +40,9 @@ It is an interactive game where you drag this fish to their habitat.
   </div>```
   This code from the AI game added lives, scores, and levels, which is a really cool addition I never thought about when I made my concept game.
 ### validation & accessibility
- ### This is validated with research and is easily accessible to everyone. It can be played anywhere on any device and is made for all ages.
+  This is validated with research and is easily accessible to everyone. It can be played anywhere on any device and is made for all ages.
  ### link to sprint 99/future ideas
-- https://github.com/Johnathan-GIS/charlie-dev-ballard/milestone/1
-  - create a milestone: sprint 99
-  - create at least 3 issues for future ideas & label them as sprint 99 milestone 
+### https://github.com/Johnathan-GIS/charlie-dev-ballard/milestone/1
+  
 
 
