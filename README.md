@@ -1,13 +1,9 @@
 # charlie-dev-ballard
 user story
-as a visitor to your github profile
-i want a game
-so that i haz funz
-narrative
-You'll create a
+Welcome to Johnathan Ballard's GitHub. There are some cool games on this page you will discover.
+There are two different fish games, both fun and educational. 
 # Wire frame and game ideas 
 https://github.com/Johnathan-GIS/charlie-dev-ballard/wiki/charile%E2%80%90dev%E2%80%90ballard%E2%80%90wiki%E2%80%90game%E2%80%90ideas
-
 # game title
 > short tagline
 Fish Play
@@ -21,27 +17,32 @@ Johnathan Ballard https://github.com/Johnathan-GIS 10/08/2026, version 1.0
 
 ## narrative
 More details about the fish game below
-> fish, oceans, lakes, & rivers, live below!
+> Fish, oceans, lakes, & rivers live below!
 Learn more about Earth and about different fish species and where they live across the world. 
 
 
-## about the app
+## About the app
 This app currently contains four fish that live in four different bodies of water you have to guess them right to win at the end.
-There is also second game that is more advanced inluding more different types of water and more fish.
-It is an interactive game where you drag this fish to there habitat.
+There is also a second game that is more advanced, including more different types of water and more fish.
+It is an interactive game where you drag this fish to their habitat.
 ### links to wiki/wireframe & issue/game ideas
 ### https://github.com/Johnathan-GIS/charlie-dev-ballard/wiki/charile%E2%80%90dev%E2%80%90ballard%E2%80%90wiki%E2%80%90game%E2%80%90ideas
 - 
 - ### charile-dev-ballard/assets/css/charile.css charile-dev-ballard/assets/js/charile.js     charile-dev-ballard/pages/fish_game_board_ai.html   charile-dev-ballard/pages/fish_game_board_standalone.html 
 -### a list of tech & tools
--  ### 1 css, 1 javascript 2 html page files and 1 hmtl index
+-  ### 1 CSS, 1 JavaScript, 2 HTML page files and 1 hmtl index
     ### Visual Studio Code Live Server, HTML (emmet), CSS (normalize, bs5 & bs icons), js (jQ, jQui), GitHub (repo, readme, wiki, milestone, GitHub pages
-- a code snippet: use triple backticks and code syntax highlighting to show off a cool portion of your code, 
-  - e.g., this button's click (show html code) hit's this event (show js) calls this f/n (more js) and updates the dom
-- validation & accessibilty
-- ### This is validated with research and is easily accessible to everyone 
- - links & reports using Nu & Lighthouse
-- finally, create & link to sprint 99/future ideas
+  ### The AI game created a live portion of the game
+  - ```<div class="brand"><span class="brand-icon">🐠</span><span>Fish Play</span></div>
+  <div class="stats">
+    <div class="stat">⭐ Score: <b id="score">0</b></div>
+    <div class="stat">💗 Lives: <b id="lives">3</b></div>
+    <div class="stat">🏆 Level: <b id="level">1</b></div>
+  </div>```
+  This code from the AI game added lives, scores, and levels, which is a really cool addition I never thought about when I made my concept game.
+### validation & accessibility
+ ### This is validated with research and is easily accessible to everyone. It can be played anywhere on any device and is made for all ages.
+ ### link to sprint 99/future ideas
 - https://github.com/Johnathan-GIS/charlie-dev-ballard/milestone/1
   - create a milestone: sprint 99
   - create at least 3 issues for future ideas & label them as sprint 99 milestone 
